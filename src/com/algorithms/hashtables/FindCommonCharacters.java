@@ -25,9 +25,8 @@ public class FindCommonCharacters {
 	public static void main(String[] args) {
 		
 		String words[] = {"bella","lablel","roller"};
-//		new FindCommonCharacters().commonChars(words);
+		new FindCommonCharacters().commonChars(words);
 		
-		getMap("bella");
 	}
 	
 	
@@ -56,6 +55,7 @@ public class FindCommonCharacters {
 				output.add(((char)(i+'a'))+"");
 			}
 		}
+		System.out.println(output);
 		return output;
     }
 
