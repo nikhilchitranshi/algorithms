@@ -2,6 +2,8 @@ package com.algorithms.string;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 /*
 We are given two sentences A and B.  (A sentence is a string of space separated words.  Each word consists only of lowercase letters.)
@@ -29,22 +31,21 @@ public class UncommonCharacters {
 	public String[] uncommonFromSentences(String A, String B) {
 
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		ArrayList<String> list = new ArrayList<String>();
-		String allwords = A + " " + B;
-
-		for (String s : allwords.split(" ")) {
+		for (String s : A.split(" ")) {
+			map.put(s, map.getOrDefault(s, 0) + 1);
+		}
+		for (String s : B.split(" ")) {
 			map.put(s, map.getOrDefault(s, 0) + 1);
 		}
 
-		for (String s : map.keySet()) {
-			if (map.get(s) == 1)
-				list.add(s);
-
+		List<String> result = new ArrayList<>();
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			if (entry.getValue() == 1) {
+				result.add(entry.getKey());
+			}
 		}
-
-		String[] output = new String[list.size()];
-		output = list.toArray(output);
-		return output;
+		String[] itemsArray = new String[result.size()];
+		return result.toArray(itemsArray);
 	}
 
 }

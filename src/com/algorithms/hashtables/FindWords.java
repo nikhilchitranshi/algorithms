@@ -36,29 +36,36 @@ public class FindWords {
 	
 	
 	public int countCharacters(String[] words, String chars) {
-        int sum = 0;
+        int result =0;
+        HashMap<Character, Integer> charsMap = getMap(chars);
+        
         for(String word : words){
-            int[] w1 = charsToIntArray(word);
-            int[] w2 = charsToIntArray(chars);
-            boolean match = true;
-            for(int i = 0; i<w1.length; i++){
-                if(w1[i] > w2[i]){
-                    match = false;
-                    break;
-                }
+           
+            HashMap<Character, Integer> wordMap = getMap(word);
+            
+            int count = 0;
+            
+            for(char ch : word.toCharArray()){
+                if( charsMap.containsKey(ch)  && (wordMap.get(ch) <= charsMap.get(ch))) 
+                    count++;
             }
-            if(match){
-                sum += word.length();
-            }
+            
+            if(count == word.length())
+                result += count;
         }
-        return sum;
+        
+        return result;        
     }
-    private int[] charsToIntArray(String chars){
-        int[] result = new int[26];
-        for(int i = 0; i<chars.length(); i++){
-            result[chars.charAt(i) - 'a']++;
+
+	
+	public static HashMap<Character, Integer> getMap(String input){
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        
+        for(char ch : input.toCharArray()){
+            map.put(ch, map.getOrDefault(ch,0)+1);
         }
-        return result;
+        return map;
+        
     }
 
 }
