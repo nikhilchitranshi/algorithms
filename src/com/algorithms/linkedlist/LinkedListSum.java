@@ -34,7 +34,7 @@ public class LinkedListSum {
 	public static ListNode addLinkedListNumbers(ListNode l1, ListNode l2) {
 		
 		ListNode p = l1, q=l2;
-		ListNode dummyHead = new ListNode(0)x;
+		ListNode dummyHead = new ListNode(0);
 		ListNode curr = dummyHead;
 		int carry = 0;
 		
